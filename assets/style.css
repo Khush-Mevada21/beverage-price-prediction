@@ -1,0 +1,612 @@
+/* assets/style.css - Production-Level Ultra-Modern Design */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap');
+
+/* ==================== VARIABLES ==================== */
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary: #06b6d4;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-light: #94a3b8;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* ==================== GLOBAL STYLES ==================== */
+.main, .stApp {
+    background: linear-gradient(to bottom, #f8fafc 0%, #e0e7ff 50%, #fce7f3 100%);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 0 !important;
+}
+
+/* Remove default Streamlit padding */
+.block-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+}
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
+.stDeployButton {display: none !important;}
+button[kind="header"] {display: none !important;}
+
+/* ==================== HERO SECTION ==================== */
+.hero-section {
+    background: var(--gradient-1);
+    padding: 3rem 2rem 2.5rem;
+    margin: -1rem -1rem 3rem -1rem;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    animation: heroShift 15s ease-in-out infinite;
+}
+
+@keyframes heroShift {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(20px) translateY(-20px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+.hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff !important;
+    margin: 0 0 1rem 0;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 400;
+    line-height: 1.6;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== FORM CONTAINER ==================== */
+.form-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ==================== TAB NAVIGATION ==================== */
+.tab-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 2px solid var(--border);
+    min-width: 180px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+}
+
+.tab-item.active {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+}
+
+.tab-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.tab-item.active .tab-icon {
+    filter: grayscale(0%);
+}
+
+.tab-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.tab-item.active .tab-label {
+    color: #ffffff;
+}
+
+.tab-connector {
+    width: 60px;
+    height: 2px;
+    background: var(--border);
+    position: relative;
+}
+
+.tab-connector::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+}
+
+/* ==================== INPUT SECTIONS ==================== */
+.input-section {
+    margin-bottom: 1rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    border-left: 5px solid var(--primary);
+}
+
+.demographics-section .section-header {
+    border-left-color: #667eea;
+}
+
+.behavior-section .section-header {
+    border-left-color: #4facfe;
+}
+
+.market-section .section-header {
+    border-left-color: #43e97b;
+}
+
+.section-icon {
+    font-size: 2.5rem;
+}
+
+.section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.section-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0.25rem 0 0 0;
+}
+
+.section-divider {
+    height: 2rem;
+}
+
+/* ==================== CUSTOM INPUT STYLING ==================== */
+/* Labels */
+label[data-testid="stWidgetLabel"] {
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+    color: #0F172A !important;
+    margin-bottom: 0.5rem !important;
+    display: block !important;
+}
+
+label[data-testid="stWidgetLabel"] p {
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+}
+
+/* Target the label span directly */
+div[data-testid="stNumberInput"] label span,
+div[data-testid="stSelectbox"] label span {
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+}
+
+/* Number Input */
+div[data-testid="stNumberInput"] > div {
+    min-height: 3.25rem !important;
+}
+
+div[data-testid="stNumberInput"] input {
+    border: 2px solid var(--border) !important;
+    border-radius: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    background: #f8fafc !important;
+    min-height: 3.25rem !important;
+    line-height: 1.5 !important;
+}
+
+div[data-testid="stNumberInput"] input:focus {
+    border-color: var(--primary) !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+    outline: none !important;
+}
+
+/* Select Box */
+div[data-testid="stSelectbox"] > div > div {
+    border: 2px solid var(--border) !important;
+    border-radius: 0.75rem !important;
+    transition: all 0.3s ease !important;
+    background: #f8fafc !important;
+    padding: 0.75rem 1rem !important;
+    min-height: 3.25rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+div[data-testid="stSelectbox"] > div > div:hover {
+    border-color: var(--primary-light) !important;
+}
+
+div[data-testid="stSelectbox"] > div > div:focus-within {
+    border-color: var(--primary) !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Fix for selected value display */
+div[data-testid="stSelectbox"] input {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+}
+
+div[data-testid="stSelectbox"] > div {
+    min-height: 3.25rem !important;
+}
+
+div[data-testid="stSelectbox"] svg {
+    color: var(--primary) !important;
+}
+
+/* Help Icon */
+span[data-testid="stTooltipIcon"] {
+    color: var(--text-light) !important;
+}
+
+/* ==================== CTA SECTION ==================== */
+.cta-section {
+    margin: 2rem 0 1rem;
+}
+
+div.stButton button[key="predict_button"] {
+    background: var(--gradient-1) !important;
+    color: #ffffff !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    padding: 1rem 2.5rem !important;
+    border-radius: 1rem !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+div.stButton button[key="predict_button"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+div.stButton button[key="predict_button"]:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+div.stButton button[key="predict_button"]:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4) !important;
+}
+
+div.stButton button[key="predict_button"]:active {
+    transform: translateY(-1px) scale(0.98) !important;
+}
+
+/* ==================== RESULT CONTAINER ==================== */
+.result-container {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    animation: resultSlideIn 0.5s ease-out;
+}
+
+@keyframes resultSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: resultPulse 4s ease-in-out infinite;
+}
+
+@keyframes resultPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.result-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.result-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+}
+
+.result-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== ANALYTICS SECTION ==================== */
+.analytics-header {
+    margin: 2rem 0 1rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    border-left: 5px solid var(--accent);
+}
+
+.analytics-header h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.analytics-header p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Expander */
+div[data-testid="stExpander"] {
+    border: 2px solid var(--border) !important;
+    border-radius: 1rem !important;
+    background: #f8fafc !important;
+    margin-top: 1rem !important;
+}
+
+div[data-testid="stExpander"] summary {
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    padding: 1rem !important;
+    font-size: 0.95rem !important;
+}
+
+div[data-testid="stExpander"] summary:hover {
+    background: #ffffff !important;
+}
+
+/* ==================== FOOTER ==================== */
+.footer-container {
+    margin-top: 4rem;
+    padding: 2.5rem 2rem;
+    background: var(--gradient-1);
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+.footer-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+}
+
+.footer-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #ffffff;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-brand h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+.footer-brand p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 1.5rem 0;
+}
+
+/* ==================== SPINNER ==================== */
+div[data-testid="stSpinner"] > div {
+    border-top-color: var(--primary) !important;
+    border-right-color: var(--primary-light) !important;
+}
+
+/* ==================== MESSAGES ==================== */
+div[data-testid="stSuccess"] {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
+    border-left: 4px solid var(--success) !important;
+    border-radius: 1rem !important;
+    padding: 1rem !important;
+}
+
+div[data-testid="stError"] {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+    border-left: 4px solid #ef4444 !important;
+    border-radius: 1rem !important;
+    padding: 1rem !important;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .tab-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .tab-connector {
+        display: none;
+    }
+    
+    .result-value {
+        font-size: 2rem;
+    }
+    
+    .form-container {
+        padding: 0 1rem;
+    }
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-1);
+    border-radius: 5px;
+    border: 2px solid #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
